@@ -1,0 +1,23 @@
+/* Remove focus styles from the contenteditable area */
+.custom-editor [contenteditable="true"] {
+  outline: none !important; /* Remove focus outline */
+  border: none !important; /* Remove border */
+  box-shadow: none !important; /* Remove shadow */
+  z-index: 0 !important;
+}
+
+/* Prevent focus styling on focus */
+.custom-editor [contenteditable="true"]:focus {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  z-index: 0 !important; /* Ensure it stays behind other elements */
+}
+
+/* Optional: Add custom padding to avoid visual cramping */
+.custom-editor [contenteditable="true"] {
+  padding: 8px;
+  border: none !important;
+  box-shadow: none !important;
+  z-index: 0 !important;
+}
