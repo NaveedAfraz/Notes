@@ -2,6 +2,10 @@ const userAuth = require("../../models/userAuth");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const path = require("path");
+const sendEmail = require("../../helper/nodemailerFile");
+const crypto = require("crypto");
+const passwordReset = require("../../models/passwordReset");
+
 // console.log("JWT Secret:", process.env.JWT_SECRET);
 
 const createUser = async (req, res) => {
@@ -87,4 +91,68 @@ const logout = async (req, res) => {
 
   res.status(200).json({ message: "Logout successful" });
 };
-module.exports = { createUser, loginUser, logout };
+
+const ForgotPassword = async (req, res) => {
+  const { email } = req.body;
+  console.log(email);
+
+  if (!email) {
+    console.log("Email is required");
+    return res.status(400).json({ error: "Email is required" });
+  }
+  try {
+    const data = await userAuth.findOne({ email: email });
+
+    const token = crypto.randomBytes(16).toString("hex");
+    console.log(token);
+
+    if (data) {
+      console.log("Email is found");
+
+      const savetoken = await passwordReset.create({
+        userId: data._id,
+        token: token,
+      });
+      const resetLink = `http://localhost:5173/reset-password?token=${token}`;
+      sendEmail(email, resetLink);
+      return res.status(200).json({ message: "Email sent successfully" });
+    }
+
+    return res.status(404).json({ error: "Email not found" });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: "Error resetting password" });
+  }
+};
+
+const ResetPassword = async (req, res) => {
+  const { token, password } = req.body;
+  console.log(password);
+
+  if (!password || !token) {
+    console.log("Email is missing or token is missing");
+    return res.status(400).json({ error: "Email is required" });
+  }
+  try {
+    const resetEntry = await passwordReset
+      .findOne({ token })
+      .populate("userId");
+    if (!resetEntry) {
+      return res.status(400).json({ error: "Invalid or expired token" });
+    }
+    const user = resetEntry.userId;
+    user.password = await bcrypt.hash(password, 10);
+    await user.save();
+    res.status(200).json({ message: "Password reset successfully" });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: "Error resetting password" });
+  }
+};
+module.exports = {
+  createUser,
+  loginUser,
+  logout,
+  ResetPassword,
+  ForgotPassword,
+};

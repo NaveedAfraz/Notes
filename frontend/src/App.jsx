@@ -8,6 +8,7 @@ import AuthCheck from "./components/common/authCheck";
 import Notes from "./pages/notes";
 import HomesLayout from "./components/notesLayout/notesLayout";
 import Home from "./pages/home";
+import ForgotPassword from "./pages/forgotpassword";
 
 function App() {
   const isauth = false;
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route
             path="/"
             element={

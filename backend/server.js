@@ -24,6 +24,8 @@ const userRoutes = require("./routes/auth/auth");
 const userNotes = require("./routes/Notes/userNotes");
 const requireAuth = require("./middleware/authCheck");
 const searchnotesRoute = require("./routes/search/search");
+app.use("/auth", userRoutes);
+app.use(/^(?!\/auth).*/, requireAuth);
 app.get("/reAuth/verify", requireAuth, (req, res) => {
   console.log(req.user);
 
@@ -36,8 +38,7 @@ app.get("/reAuth/verify", requireAuth, (req, res) => {
     },
   });
 });
-app.use("/auth", userRoutes);
-app.use("/*", requireAuth);
+
 app.use("/userNotes", userNotes);
 app.use("/notesearch", searchnotesRoute);
 const PORT = process.env.PORT || 3006;

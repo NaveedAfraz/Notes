@@ -81,12 +81,12 @@ const Header = () => {
         toast({
           title: "Logout Successfull",
           description: "You have been logged out successfully.",
-          duration: 2000,
+          duration: 3000,
           className: "bg-white text-black border-none",
         });
         setTimeout(() => {
           naviagte("/login");
-        }, 2000);
+        }, 300);
       }
     });
   };

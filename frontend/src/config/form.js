@@ -10,7 +10,7 @@ export const LoginFormComponentDetails = [
   {
     name: "password",
     label: "password",
-    placeholder: "Enter your name",
+    placeholder: "Enter your password",
     componentType: "input",
     type: "password",
     required: true,
@@ -49,7 +49,25 @@ export const SignupFormComponentDetails = [
     componentType: "input",
     type: "password",
     required: true,
-  }
-  
-]
+  },
+];
 
+export const forgotPasswordFormComponentDetails = [
+  {
+    name: "email",
+    label: "Email",
+    placeholder: "Enter your email",
+    componentType: "email",
+    required: true,
+  },
+];
+
+export const ResetPasswordFormComponentDetails = [
+  {
+    name: "email",
+    label: "Email",
+    placeholder: "Enter your email",
+    componentType: "email",
+    required: true,
+  },
+];

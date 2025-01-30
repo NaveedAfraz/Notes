@@ -106,11 +106,9 @@ export const CommonForm = ({
         );
     }
   };
-  console.log(onSubmit);
-
   return (
     <div>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} className="flex justify-center align-center">
         <div className="flex flex-col gap-4 w-[300px]">
           {formComponentDetails.map((formDetail) => {
             return (
