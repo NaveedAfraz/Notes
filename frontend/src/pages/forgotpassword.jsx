@@ -66,12 +66,12 @@ function ForgotPassword() {
           />
 
           <div className="text-center">
-            <Button
-              className="link text-white link-primary text-sm"
-              onClick={() => navigate("/forgot-password")}
+            <Link
+              to="/register"
+              className="link text-white link-primary font-medium"
             >
-              Forgot your email?
-            </Button>
+              Sign Up
+            </Link>
           </div>
         </div>
       </div>

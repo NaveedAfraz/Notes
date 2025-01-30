@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { CommonForm } from "../../src/components/common/form";
 // You can define this similar to LoginFormComponentDetails
 import React, { useState } from "react";
@@ -12,18 +12,30 @@ function ForgotPassword() {
   const [error, setError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const [searchParams] = useSearchParams();
   const resetToken = searchParams.get("token");
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
-    if (formData.email) {
+    const isValidPassword =
+      /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/.test(
+        formData.password
+      );
+    if (formData.password.length >= 8 && isValidPassword) {
       dispatch(
         ResetPassword({ token: resetToken, password: formData.password })
       ).then((res) => {
         console.log(res);
+        if (res?.payload?.success) {
+          navigate("/home");
+        } else {
+          setError(res?.payload?.error);
+        }
       });
+    } else {
+      setError(
+        "Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character"
+      );
     }
   };
 
