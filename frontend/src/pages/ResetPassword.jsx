@@ -19,7 +19,7 @@ function ForgotPassword() {
     console.log(formData);
     const isValidPassword =
       /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/.test(
-        formData.password
+        formData.password  
       );
     if (formData.password.length >= 8 && isValidPassword) {
       dispatch(
