@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import "./styles.css";
@@ -17,12 +17,13 @@ import { useToast } from "@/hooks/use-toast";
 import { Input } from "@/ui/input";
 import { Textarea } from "@/ui/textarea";
 import { Separator } from "@radix-ui/react-select";
+import NotesCarousel from "@/components/notesScroll/scrollNotes";
 
 const Home = () => {
   const { editNote, fetchLatestNote } = useSelector((state) => state.userNotes);
   const [content, setContent] = useState(editNote?.content);
 
-  const [latestNote, setLatestNote] = useState(null);
+  const [latestNotes, setLatestNotes] = useState(null);
   // console.log(editNote.content);
   const [title, setTitle] = useState(editNote?.title || "");
 
@@ -35,6 +36,9 @@ const Home = () => {
   const { notes, error } = useSelector((state) => state.userNotes);
   console.log(error);
 
+  const handleLeftScroll = () => {};
+  const handleRightScroll = () => {};
+  const scrollRef = useRef(null);
   const handleSave = () => {
     //localStorage.setItem("projectNotes", content);
     console.log(content);
@@ -106,7 +110,7 @@ const Home = () => {
           );
           dispatch(setfetchLatestNote(false));
           console.log(sortedNotes);
-          setLatestNote(sortedNotes[0]);
+          setLatestNotes(sortedNotes);
         }
       });
     }
@@ -123,6 +127,8 @@ const Home = () => {
     setContent("");
     dispatch(setEditNote({}));
   };
+  console.log(latestNotes);
+
   return (
     <div>
       <div className="p-4 bg-gray-100 rounded-lg shadow-md max-w-3xl mt-8 mx-10">
@@ -158,12 +164,14 @@ const Home = () => {
         {editNote._id && <Button onClick={handleCancel}>Cancel</Button>}
       </div>
 
-      {notes && (
+      {notes && notes.length > 0 && (
         <>
           <h2 className="text-2xl font-semibold mb-2 mx-13 my-10">
             Latest Note
           </h2>
-          <NoteCard note={latestNote} />
+          {latestNotes && latestNotes.length > 0 && (
+            <NotesCarousel latestNotes={latestNotes} />
+          )}
         </>
       )}
       <Button
