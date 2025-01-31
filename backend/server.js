@@ -8,7 +8,7 @@ const path = require("path");
 require("dotenv").config({ path: "../.env" });
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://notes-dt72.onrender.com",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
