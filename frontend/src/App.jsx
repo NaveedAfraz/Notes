@@ -25,7 +25,7 @@ function App() {
               <AuthCheck>
                 <HomesLayout />
               </AuthCheck>
-            }
+            }  
           >
             <Route path="home" element={<Home />}></Route>
             <Route path="notes" element={<Notes />} />
