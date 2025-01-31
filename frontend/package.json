@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "postinstall": "chmod +x node_modules/.bin/vite",
+    "postinstall": "node -e \"try { require('fs').chmodSync('node_modules/.bin/vite', 0o755) } catch (e) {}\"",
     "lint": "eslint .",
     "preview": "vite preview",
     "start": "npm run dev"
@@ -52,18 +52,21 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
-    "@tailwindcss/vite": "^4.0.1",
+    "@tailwindcss/postcss": "^4.0.1",
     "@types/node": "^22.10.10",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
+    "@types/use-sync-external-store": "^0.0.6",
     "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
     "eslint": "^9.17.0",
     "eslint-plugin-react": "^7.37.2",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.16",
     "globals": "^15.14.0",
+    "postcss": "^8.5.1",
     "shadcn-ui": "^0.9.4",
-    "tailwindcss": "^4.0.0",
+    "tailwindcss": "^4.0.1",
     "vite": "^6.0.11",
     "vite-tsconfig-paths": "^5.1.4"
   }

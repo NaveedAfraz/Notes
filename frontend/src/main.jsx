@@ -5,6 +5,7 @@ import store from "../store/store";
 import { Provider } from "react-redux";
 import "@radix-ui/themes/styles.css";
 import { Toaster } from "./ui/toaster";
+import "./index.css"; 
 
 createRoot(document.getElementById("root")).render(
   <Provider store={store}>
