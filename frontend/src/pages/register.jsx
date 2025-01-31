@@ -35,7 +35,7 @@ function Register() {
       <div
         className="flex justify-center items-center min-h-screen relative"
         style={{
-          backgroundImage: `url('/bro-takes-photos-fQtoEnKkSrE-unsplash.jpg')`, // Path to the image in the public folder
+          backgroundImage: `url('/bro-takes-photos-fQtoEnKkSrE-unsplash.jpg')`, 
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -52,7 +52,7 @@ function Register() {
                 Login in
               </Link>
             </p>
-            {error && <p className="text-red-500">{error}f</p>}
+            {error && <p className="text-red-500">{error}</p>}
             <CommonForm
               formComponentDetails={SignupFormComponentDetails}
               formData={formData}
