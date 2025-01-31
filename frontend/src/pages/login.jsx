@@ -24,7 +24,7 @@ function Login() {
       email: formData.email.toLowerCase(),
     };
     // console.log(Formdata);
-    console.log(process.env.BACKEND_URL);
+    console.log(import.meta.env.VITE_BACKEND_URL);
     if (formData.password.length >= 8 && isValidPassword) {
       dispatch(AuthUser(formdatas)).then((res) => {
         console.log(res);

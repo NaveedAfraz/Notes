@@ -7,7 +7,7 @@ export const CreateUser = createAsyncThunk(
     console.log("userData", userData);
     try {
       const response = await axios.post(
-        `${process.env.BACKEND_URL}/auth/register`,
+        `${import.meta.env.VITE_BACKEND_URL}/auth/register`,
         {
           userData,
           withCredentials: true,
@@ -29,7 +29,7 @@ export const AuthUser = createAsyncThunk(
     console.log("userData", userData);
     const email = userData.email;
     const password = userData.password;
-    console.log("the backendurl is ", import.meta.env.VITE_BACKEND_URL);
+    // console.log("the backendurl is ", import.meta.env.VITE_BACKEND_URL);
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/auth/AuthUser`,
@@ -60,7 +60,7 @@ export const LogoutUser = createAsyncThunk(
     console.log("running");
     try {
       const response = await axios.post(
-        `${process.env.BACKEND_URL}/auth/logout`,
+        `${import.meta.env.VITE_BACKEND_URL}/auth/logout`,
         {},
         {
           withCredentials: true,
@@ -81,7 +81,7 @@ export const forgotPassword = createAsyncThunk(
 
     try {
       const response = await axios.post(
-        `${process.env.BACKEND_URL}/auth/ForgotPassword`,
+        `${import.meta.env.VITE_BACKEND_URL}/auth/ForgotPassword`,
         {
           email,
         },
@@ -104,7 +104,7 @@ export const ResetPassword = createAsyncThunk(
   async ({ password, token }, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        `${process.env.BACKEND_URL}/auth/resetPassword`,
+        `${import.meta.env.VITE_BACKEND_URL}/auth/resetPassword`,
         {
           password,
           token,

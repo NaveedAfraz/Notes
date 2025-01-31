@@ -11,11 +11,11 @@ const AuthCheck = ({ children }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     const checkAuth = async () => {
-      console.log(process.env.BACKEND_URL);
+      console.log(import.meta.env.VITE_BACKEND_URL);
 
       try {
         const response = await axios.get(
-          `${process.env.BACKEND_URL}/reAuth/verify`,
+          `${import.meta.env.VITE_BACKEND_URL}/reAuth/verify`,
           {
             withCredentials: true, // Important for sending cookies
             headers: {
