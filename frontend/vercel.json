@@ -2,9 +2,7 @@
   "build": {
     "env": {
       "NODE_VERSION": "20.x"
-    },
-
-    "outputDirectory": "dist"
+    }
   },
   "routes": [
     {
