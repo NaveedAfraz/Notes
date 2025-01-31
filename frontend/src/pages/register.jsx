@@ -10,14 +10,24 @@ function Register() {
   const [formData, setFormData] = useState({});
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [error, setError] = useState("");
   const handleSubmit = (e) => {
+    const formdatas = {
+      ...formData,
+      email: formData.email.toLowerCase(),
+    };
     e.preventDefault();
-    dispatch(CreateUser(formData)).then((res) => {
-      console.log(res);
-      if (res?.payload?.message) {
-        navigate("/login");
-      }
-    });
+    console.log(formdatas);
+    if (formdatas.password == formdatas.confirmPassword) {
+      dispatch(CreateUser(formdatas)).then((res) => {
+        console.log(res);
+        if (res?.payload?.message) {
+          navigate("/login");
+        }
+      });
+    } else {
+      setError("Confirm Password do not match");
+    }
   };
 
   return (
@@ -42,6 +52,7 @@ function Register() {
                 Login in
               </Link>
             </p>
+            {error && <p className="text-red-500">{error}f</p>}
             <CommonForm
               formComponentDetails={SignupFormComponentDetails}
               formData={formData}

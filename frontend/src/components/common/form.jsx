@@ -18,7 +18,6 @@ export const CommonForm = ({
   onSubmit,
   buttonText,
   isBtnDisabled,
-  errors,
 }) => {
   const renderComponentType = (formComponentDetail) => {
     const value = formData[formComponentDetail.name] || "";

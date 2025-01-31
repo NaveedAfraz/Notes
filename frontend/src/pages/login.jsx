@@ -19,9 +19,13 @@ function Login() {
       /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/.test(
         formData.password
       );
-
+    const formdatas = {
+      ...formData,
+      email: formData.email.toLowerCase(),
+    };
+    // console.log(Formdata);
     if (formData.password.length >= 8 && isValidPassword) {
-      dispatch(AuthUser(formData)).then((res) => {
+      dispatch(AuthUser(formdatas)).then((res) => {
         console.log(res);
         if (res?.payload?.success) {
           navigate("/home");
