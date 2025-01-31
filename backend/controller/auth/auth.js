@@ -19,7 +19,7 @@ const createUser = async (req, res) => {
     return res.status(404).json({ error: "All fields are required" });
   }
   try {
-    const hashedPassword = await .hash(password, 10);
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     const newUser = new userAuth({
       username: name,
