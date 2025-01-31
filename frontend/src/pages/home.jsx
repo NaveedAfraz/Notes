@@ -166,8 +166,8 @@ const Home = () => {
 
       {notes && notes.length > 0 && (
         <>
-          <h2 className="text-2xl font-semibold mb-2 mx-13 my-10">
-            Latest Note
+          <h2 className="text-2xl mx-14 font-semibold mb-2 my-10">
+            Latest Notes
           </h2>
           {latestNotes && latestNotes.length > 0 && (
             <NotesCarousel latestNotes={latestNotes} />

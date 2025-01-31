@@ -71,21 +71,21 @@ function ForgotPassword() {
           )}
 
           <CommonForm
-            formComponentDetails={ResetPasswordFormComponentDetails} // You will need to define this
+            formComponentDetails={ResetPasswordFormComponentDetails} 
             formData={formData}
             setFormData={setFormData}
             buttonText="Reset Password"
             onSubmit={handleSubmit}
           />
 
-          <div className="text-center">
+          {/* <div className="text-center">
             <Button
               className="link text-white link-primary text-sm"
               onClick={() => navigate("/forgot-password")}
             >
               Forgot your email?
             </Button>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
