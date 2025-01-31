@@ -11,7 +11,7 @@ const AuthCheck = ({ children }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     const checkAuth = async () => {
-      console.log(import.meta.env.VITE_BACKEND_URL);
+      console.log("backend url",import.meta.env.VITE_BACKEND_URL);
 
       try {
         const response = await axios.get(
