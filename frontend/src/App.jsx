@@ -9,7 +9,7 @@ import Notes from "./pages/notes";
 import HomesLayout from "./components/notesLayout/notesLayout";
 import Home from "./pages/home";
 import ForgotPassword from "./pages/forgotpassword";
-
+import "./style.css"
 function App() {
   const isauth = false;
   return (
