@@ -29,10 +29,10 @@ export const AuthUser = createAsyncThunk(
     console.log("userData", userData);
     const email = userData.email;
     const password = userData.password;
-    console.log("the backendurl is ", process.env.BACKEND_URL);
+    console.log("the backendurl is ", import.meta.env.VITE_BACKEND_URL);
     try {
       const response = await axios.post(
-        `${process.env.BACKEND_URL}/auth/AuthUser`,
+        `${import.meta.env.VITE_BACKEND_URL}/auth/AuthUser`,
         {
           email,
           password,
