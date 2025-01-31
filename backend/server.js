@@ -24,6 +24,14 @@ const userRoutes = require("./routes/auth/auth");
 const userNotes = require("./routes/Notes/userNotes");
 const requireAuth = require("./middleware/authCheck");
 const searchnotesRoute = require("./routes/search/search");
+
+app.use(express.static(path.join(__dirname, "frontend/dist")));
+
+// Catch-all route for React (ensures React Router works on refresh)
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "frontend/dist", "index.html"));
+});
+
 app.use("/auth", userRoutes);
 app.use(/^(?!\/auth).*/, requireAuth);
 app.get("/reAuth/verify", requireAuth, (req, res) => {
