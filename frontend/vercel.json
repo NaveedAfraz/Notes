@@ -2,7 +2,8 @@
   "build": {
     "env": {
       "NODE_VERSION": "20.x"
-    }
+    },
+    "command": "npm run build"
   },
   "routes": [
     {
