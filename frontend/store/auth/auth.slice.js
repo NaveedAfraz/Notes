@@ -6,10 +6,13 @@ export const CreateUser = createAsyncThunk(
   async (userData, { rejectWithValue }) => {
     console.log("userData", userData);
     try {
-      const response = await axios.post("http://localhost:3006/auth/register", {
-        userData,
-        withCredentials: true,
-      });
+      const response = await axios.post(
+        `${process.env.BACKEND_URL}/auth/register`,
+        {
+          userData,
+          withCredentials: true,
+        }
+      );
       console.log(response);
 
       return response.data;
@@ -28,7 +31,7 @@ export const AuthUser = createAsyncThunk(
     const password = userData.password;
     try {
       const response = await axios.post(
-        `http://localhost:3006/auth/AuthUser`,
+        `${process.env.BACKEND_URL}/auth/AuthUser`,
         {
           email,
           password,
@@ -56,7 +59,7 @@ export const LogoutUser = createAsyncThunk(
     console.log("running");
     try {
       const response = await axios.post(
-        "http://localhost:3006/auth/logout",
+        `${process.env.BACKEND_URL}/auth/logout`,
         {},
         {
           withCredentials: true,
@@ -77,7 +80,7 @@ export const forgotPassword = createAsyncThunk(
 
     try {
       const response = await axios.post(
-        "http://localhost:3006/auth/ForgotPassword",
+        `${process.env.BACKEND_URL}/auth/ForgotPassword`,
         {
           email,
         },
@@ -100,7 +103,7 @@ export const ResetPassword = createAsyncThunk(
   async ({ password, token }, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        "http://localhost:3006/auth/resetPassword",
+        `${process.env.BACKEND_URL}/auth/resetPassword`,
         {
           password,
           token,

@@ -7,7 +7,7 @@ export const search = createAsyncThunk(
     console.log(searchBy, userId, content);
     try {
       const response = await axios.post(
-        `http://localhost:3006/notesearch/search`,
+        `${process.env.BACKEND_URL}/notesearch/search`,
         {
           searchBy,
           userId,

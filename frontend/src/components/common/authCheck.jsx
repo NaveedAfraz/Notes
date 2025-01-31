@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { setUser } from "../../../store/auth/auth.slice"
+import { setUser } from "../../../store/auth/auth.slice";
 
 const AuthCheck = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
@@ -12,13 +12,16 @@ const AuthCheck = ({ children }) => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await axios.get("http://localhost:3006/reAuth/verify", {
-          withCredentials: true, // Important for sending cookies
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await axios.get(
+          `${process.env.BACKEND_URL}/reAuth/verify`,
+          {
+            withCredentials: true, // Important for sending cookies
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+          }
+        );
         console.log(response);
         dispatch(setUser(response.data));
         setIsAuthenticated(true);

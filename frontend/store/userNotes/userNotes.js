@@ -7,7 +7,7 @@ export const createNote = createAsyncThunk(
     console.log("userData", content, id, title);
     try {
       const response = await axios.post(
-        "http://localhost:3006/userNotes/Notes",
+        `${process.env.BACKEND_URL}/userNotes/Notes`,
         {
           content,
           title,
@@ -33,7 +33,7 @@ export const getNotes = createAsyncThunk(
     console.log("userData", id);
     try {
       const response = await axios.get(
-        `http://localhost:3006/userNotes/FetchNotes/${id}`,
+        `${process.env.BACKEND_URL}/userNotes/FetchNotes/${id}`,
         {
           withCredentials: true,
         }
@@ -53,7 +53,7 @@ export const deleteNote = createAsyncThunk(
     try {
       console.log(id);
       const response = await axios.delete(
-        `http://localhost:3006/userNotes/DeleteNote/${id}`,
+        `${process.env.BACKEND_URL}/userNotes/DeleteNote/${id}`,
         { withCredentials: true }
       );
       console.log(response);
@@ -72,7 +72,7 @@ export const EditNote = createAsyncThunk(
     try {
       console.log(id, content);
       const response = await axios.put(
-        `http://localhost:3006/userNotes/EditNote/${id}`,
+        `${process.env.BACKEND_URL}/userNotes/EditNote/${id}`,
         {
           content,
         },
