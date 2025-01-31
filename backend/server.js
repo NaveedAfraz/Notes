@@ -25,9 +25,12 @@ const userNotes = require("./routes/Notes/userNotes");
 const requireAuth = require("./middleware/authCheck");
 const searchnotesRoute = require("./routes/search/search");
 
-app.use(express.static(path.join(__dirname, "frontend/dist")));
+app.use(
+  "/assets",
+  express.static(path.join(__dirname, "frontend/dist/assets"))
+);
 
-// Catch-all route for React (ensures React Router works on refresh)
+// Serve the index.html file for all routes
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "frontend/dist", "index.html"));
 });
