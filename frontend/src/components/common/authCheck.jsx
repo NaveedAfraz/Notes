@@ -11,6 +11,8 @@ const AuthCheck = ({ children }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     const checkAuth = async () => {
+      console.log(process.env.BACKEND_URL);
+
       try {
         const response = await axios.get(
           `${process.env.BACKEND_URL}/reAuth/verify`,
