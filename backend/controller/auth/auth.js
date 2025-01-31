@@ -1,5 +1,5 @@
 const userAuth = require("../../models/userAuth");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const path = require("path");
 const sendEmail = require("../../helper/nodemailerFile");
@@ -19,7 +19,7 @@ const createUser = async (req, res) => {
     return res.status(404).json({ error: "All fields are required" });
   }
   try {
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await .hash(password, 10);
 
     const newUser = new userAuth({
       username: name,
