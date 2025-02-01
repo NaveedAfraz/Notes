@@ -58,7 +58,7 @@ const NoteCard = ({ note }) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Card className="p-4 border-gray-300 h-52 min-w-80 rounded-lg shadow-md max-w-2xs mt-8 ">
+        <Card className="p-4 border-gray-300 h-65 min-w-80 rounded-lg shadow-md max-w-2xs mt-8 ">
           <div className="mb-1.5 flex *:flex-col justify-between items-center">
             <h2 className=" text-lg font-semibold  text-center">
               {note?.title}
