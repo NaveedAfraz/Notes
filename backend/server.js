@@ -31,12 +31,9 @@ app.use(
 );
 
 // Serve the index.html file for all routes
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "frontend/dist", "index.html"));
-});
 
 app.use("/auth", userRoutes);
-app.use(/^(?!\/auth).*/, requireAuth);
+
 app.get("/reAuth/verify", requireAuth, (req, res) => {
   console.log(req.user);
 
@@ -48,6 +45,10 @@ app.get("/reAuth/verify", requireAuth, (req, res) => {
       username: req.user.username,
     },
   });
+});
+app.use(/^(?!\/auth).*/, requireAuth);
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "frontend/dist", "index.html"));
 });
 
 app.use("/userNotes", userNotes);

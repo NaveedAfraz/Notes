@@ -70,10 +70,10 @@ const loginUser = async (req, res) => {
 
     // localStorage.setItem("token", token);
     res.cookie("authToken", token, {
-      httpOnly: true, // Prevents client-side JavaScript from accessing the cookie
+      httpOnly: true,
       sameSite: "None", // 🔥 Fix: Allow cross-origin cookies
       secure: true, // Protects against CSRF attacks
-      maxAge: 3600000, // 1 hour in milliseconds
+      maxAge: 3600000,
       path: "/",
     });
     return res
