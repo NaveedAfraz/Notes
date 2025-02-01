@@ -46,7 +46,7 @@ app.get("/reAuth/verify", requireAuth, (req, res) => {
     },
   });
 });
-app.use(/^(?!\/auth).*/, requireAuth);
+app.use(/^(?!\/auth|\/assets).*/, requireAuth);
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "frontend/dist"));
 });
