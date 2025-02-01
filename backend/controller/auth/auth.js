@@ -88,7 +88,11 @@ const loginUser = async (req, res) => {
 const logout = async (req, res) => {
   console.log("hlo");
 
-  res.clearCookie("authToken", { httpOnly: true, secure: false });
+  res.clearCookie("authToken", {
+    httpOnly: true,
+    sameSite: "None",
+    secure: true,
+  });
 
   res.status(200).json({ message: "Logout successful" });
 };
