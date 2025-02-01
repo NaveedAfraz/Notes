@@ -48,7 +48,7 @@ app.get("/reAuth/verify", requireAuth, (req, res) => {
 });
 app.use(/^(?!\/auth).*/, requireAuth);
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "frontend/dist", "index.html"));
+  res.sendFile(path.join(__dirname, "frontend/dist"));
 });
 
 app.use("/userNotes", userNotes);
