@@ -118,7 +118,7 @@ const ForgotPassword = async (req, res) => {
         userId: data._id,
         token: token,
       });
-      const resetLink = `http://localhost:5173/reset-password?token=${token}`;
+      const resetLink = `https://notes-backend-8esp.onrender.com/reset-password?token=${token}`;
       sendEmail(email, resetLink);
       return res.status(200).json({ message: "Email sent successfully" });
     }
