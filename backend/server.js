@@ -27,13 +27,13 @@ const searchnotesRoute = require("./routes/search/search");
 
 app.use(
   "/assets",
-  express.static(path.join(__dirname, "frontend/dist/assets"))
+  express.static(path.join(__dirname, "../frontend/dist/assets"))
 );
 
 // Serve the index.html file for all routes
 const fs = require("fs");
 app.get("/list-files", (req, res) => {
-  const distPath = path.join(__dirname, "frontend/dist");
+  const distPath = path.join(__dirname, "../frontend/dist");
   fs.readdir(distPath, (err, files) => {
     if (err) return res.status(500).json({ error: err.message });
     res.json({ files });
@@ -61,7 +61,7 @@ app.use("/userNotes", userNotes);
 app.use("/notesearch", searchnotesRoute);
 
 app.get("*", (req, res) => {
-  const indexPath = path.resolve(__dirname, "frontend/dist", "index.html");
+  const indexPath = path.resolve(__dirname, "../frontend/dist", "index.html");
   console.log("Sending file from:", indexPath);
   res.sendFile(indexPath, (err) => {
     if (err) {
