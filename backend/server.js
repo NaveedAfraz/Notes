@@ -60,16 +60,25 @@ app.use(/^(?!\/auth|\/assets|\/reset-password|\/$).*/, requireAuth);
 app.use("/userNotes", userNotes);
 app.use("/notesearch", searchnotesRoute);
 
-app.get("*", (req, res) => {
-  const indexPath = path.resolve(__dirname, "../frontend/dist", "index.html");
-  console.log("Sending file from:", indexPath);
-  res.sendFile(indexPath, (err) => {
-    if (err) {
-      console.error("Error sending index.html:", err);
-      res.status(err.status).end();
-    }
-  });
+app.get('/*', function(req, res) {
+  // Don't serve index.html for API routes or asset requests
+  if (req.url.startsWith('/api') || req.url.startsWith('/assets')) {
+      return res.status(404).send('Not found');
+  }
+  
+  try {
+      res.sendFile(path.join(__dirname, '../frontend/dist/index.html'), function(err) {
+          if (err) {
+              console.error('Error sending index.html:', err);
+              res.status(500).send('Error loading page');
+          }
+      });
+  } catch (error) {
+      console.error('Error in catch block:', error);
+      res.status(500).send('Server error');
+  }
 });
+console.log('Attempted path:', path.join(__dirname, '../frontend/dist/index.html'));
 const PORT = process.env.PORT || 3006;
 app.listen(PORT, () => {
   console.log("Server is running on port 3006");
