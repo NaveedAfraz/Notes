@@ -54,8 +54,8 @@ app.get("/reAuth/verify", requireAuth, (req, res) => {
     },
   });
 });
-app.use(/^(?!\/auth|\/assets|\/$).*/, requireAuth);
-
+// Modified regex to exclude reset-password route
+app.use(/^(?!\/auth|\/assets|\/reset-password|\/$).*/, requireAuth);
 
 app.use("/userNotes", userNotes);
 app.use("/notesearch", searchnotesRoute);
@@ -74,4 +74,3 @@ const PORT = process.env.PORT || 3006;
 app.listen(PORT, () => {
   console.log("Server is running on port 3006");
 });
-
