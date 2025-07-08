@@ -24,7 +24,9 @@ const userRoutes = require("./routes/auth/auth");
 const userNotes = require("./routes/Notes/userNotes");
 const requireAuth = require("./middleware/authCheck");
 const searchnotesRoute = require("./routes/search/search");
-
+app.use("/api/health, (req,res) => {
+        return res.status(200).json({message: "working"})
+})
 app.use(
   "/assets",
   express.static(path.join(__dirname, "../frontend/dist/assets"))
